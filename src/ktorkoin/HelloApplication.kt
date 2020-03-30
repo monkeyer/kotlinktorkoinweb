@@ -9,6 +9,7 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
+import org.koin.core.context.startKoin
 import org.koin.ktor.ext.*
 import org.koin.logger.slf4jLogger
 
@@ -21,7 +22,12 @@ fun Application.main() {
     environment.monitor.subscribe(KoinApplicationStarted) {
         log.info("Koin started.")
     }
-    install(Koin) {
+    /*install(Koin) {
+        slf4jLogger()
+        modules(helloAppModule)
+    }*/
+
+    startKoin {
         slf4jLogger()
         modules(helloAppModule)
     }
