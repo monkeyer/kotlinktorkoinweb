@@ -1,5 +1,6 @@
 package fan.zheyuan
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import fan.zheyuan.routes.login
 import fan.zheyuan.routes.styles
 import fan.zheyuan.routes.upload
@@ -10,6 +11,7 @@ import io.ktor.auth.UserHashedTableAuth
 import io.ktor.features.*
 import io.ktor.gson.gson
 import io.ktor.http.ContentType
+import io.ktor.jackson.jackson
 import io.ktor.locations.Location
 import io.ktor.locations.Locations
 import io.ktor.routing.routing
@@ -65,6 +67,9 @@ fun Application.module(testing: Boolean = false) {
 
     install(ContentNegotiation) {
         gson {
+        }
+        jackson {
+            disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         }
     }
 

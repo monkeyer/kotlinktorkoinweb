@@ -58,6 +58,9 @@ dependencies {
     implementation "com.h2database:h2:$h2_version"
     implementation "org.jetbrains.exposed:exposed:$exposed_version"
     implementation "com.github.pgutkowski:kgraphql:${kgraphql_version}"
+
+    //Excel
+    implementation "com.opencsv:opencsv:$opencsv_version"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

@@ -1,5 +1,6 @@
 package fan.zheyuan.ktorkoin
 
+import fan.zheyuan.applications.beerqlModule
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -13,11 +14,9 @@ import org.koin.core.context.startKoin
 import org.koin.ktor.ext.*
 import org.koin.logger.slf4jLogger
 
-fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
+//fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
 
-fun Application.main() {
-    install(DefaultHeaders)
-    install(CallLogging)
+fun Application.hello() {
 
     environment.monitor.subscribe(KoinApplicationStarted) {
         log.info("Koin started.")
@@ -29,7 +28,7 @@ fun Application.main() {
 
     startKoin {
         slf4jLogger()
-        modules(helloAppModule)
+        modules(helloAppModule, beerqlModule)
     }
 
     environment.monitor.subscribe(KoinApplicationStopPreparing) {
