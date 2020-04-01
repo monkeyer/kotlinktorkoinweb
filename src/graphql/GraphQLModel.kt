@@ -13,6 +13,9 @@ class GraphQLModel(private val beerRepository: BeerRepository) : KoinComponent {
             objectMapper = jacksonObjectMapper()
         }
 
+        /**
+         * beers (size: Int) { }
+         */
         query("beers") {
             resolver { size: Int ->
                 beerRepository.getAll(size)
@@ -21,6 +24,9 @@ class GraphQLModel(private val beerRepository: BeerRepository) : KoinComponent {
             }
         }
 
+        /**
+         * beer (id: Int) {}
+         */
         query("beer") {
             resolver { id: Int -> beerRepository.findById(id) }
                 .withArgs { arg<Int> { name = "id" } }

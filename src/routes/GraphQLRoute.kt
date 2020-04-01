@@ -19,7 +19,7 @@ fun Route.graphQLRoute() {
 
     post("/beerql") {
         val req = call.receive<GraphQlRequest>()
-        println(req)
+        println("req is $req")
         val variables = if (req.variables == null) null
         else jacksonObjectMapper().writeValueAsString(req.variables)
         var result = ""

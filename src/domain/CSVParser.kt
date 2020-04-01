@@ -34,5 +34,5 @@ fun main() {
     repo.createTable()
     val beers = Parser.parseBeers()
     repo.insertList(beers)
-    repo.getAll().forEach { println(it) }
+//    repo.getAll().forEach { println(it) }
 }
