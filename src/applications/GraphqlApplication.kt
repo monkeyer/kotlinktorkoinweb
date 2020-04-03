@@ -3,6 +3,7 @@ package fan.zheyuan.applications
 import com.fasterxml.jackson.databind.DeserializationFeature
 import fan.zheyuan.domain.repository.BeerRepository
 import fan.zheyuan.graphql.GraphQLModel
+import fan.zheyuan.ktorkoin.helloAppModule
 import fan.zheyuan.routes.beersRoute
 import fan.zheyuan.routes.graphQLRoute
 import fan.zheyuan.service.BeerService

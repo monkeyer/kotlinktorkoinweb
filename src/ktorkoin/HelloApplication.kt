@@ -26,11 +26,6 @@ fun Application.hello() {
         modules(helloAppModule)
     }*/
 
-    startKoin {
-        slf4jLogger()
-        modules(helloAppModule, beerqlModule)
-    }
-
     environment.monitor.subscribe(KoinApplicationStopPreparing) {
         log.info("Koin stopping...")
     }
