@@ -2,6 +2,7 @@ package fan.zheyuan
 
 import com.google.gson.GsonBuilder
 import com.google.gson.LongSerializationPolicy
+import fan.zheyuan.domain.model.Video
 import org.ehcache.CacheManagerBuilder
 import org.ehcache.config.CacheConfigurationBuilder
 import java.io.File

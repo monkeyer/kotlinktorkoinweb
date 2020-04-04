@@ -37,6 +37,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "io.ktor:ktor-server-netty:$ktor_version"
     implementation "ch.qos.logback:logback-classic:$logback_version"
+    implementation "io.ktor:ktor-server-core:$ktor_version"
 //    implementation "io.ktor:ktor-server-core:$ktor_version"
     implementation "io.ktor:ktor-html-builder:$ktor_version"
     implementation "io.ktor:ktor-locations:$ktor_version"
@@ -68,6 +69,9 @@ dependencies {
 
     implementation "org.springframework:spring-jdbc:5.2.2.RELEASE"
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
+
+    //templates
+    implementation "io.ktor:ktor-thymeleaf:$ktor_version"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

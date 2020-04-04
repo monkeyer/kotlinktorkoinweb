@@ -1,4 +1,4 @@
-package fan.zheyuan
+package fan.zheyuan.domain.model
 
 import java.io.Serializable
 

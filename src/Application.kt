@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.viartemev.ktor.flyway.FlywayFeature
 import fan.zheyuan.applications.beerqlModule
+import fan.zheyuan.configuration.appJacksonMapper
 import fan.zheyuan.di.messageModule
 import fan.zheyuan.exception.BaseHttpException
 import fan.zheyuan.ktorkoin.helloAppModule
@@ -31,12 +32,14 @@ import io.ktor.routing.routing
 import io.ktor.sessions.SessionTransportTransformerMessageAuthentication
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.cookie
+import io.ktor.thymeleaf.Thymeleaf
 import io.ktor.util.getDigestFunction
 import io.ktor.util.hex
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.ktor.ext.inject
 import org.koin.logger.slf4jLogger
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import java.io.File
 import java.io.IOException
 import java.time.ZonedDateTime
@@ -59,6 +62,13 @@ fun Application.modules(testing: Boolean = false) {
     install(Compression) {
         default()
         excludeContentType(ContentType.Video.Any)
+    }
+    install(Thymeleaf) {
+        setTemplateResolver(ClassLoaderTemplateResolver().apply {
+            prefix = "templates/thymeleaf/"
+            suffix = ".html"
+            characterEncoding = "utf-8"
+        })
     }
     install(StatusPages) {
         exception<BaseHttpException> {
@@ -149,11 +159,3 @@ data class VideoStream(val id: Long)
 
 @Location("video/page/{id}")
 data class VideoPage(val id: Long)
-
-val appJacksonMapper: ObjectMapper = jacksonObjectMapper().apply {
-    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-    setSerializationInclusion(JsonInclude.Include.NON_NULL)
-    setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"))
-    registerModule(JavaTimeModule())
-}
