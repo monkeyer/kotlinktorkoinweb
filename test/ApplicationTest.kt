@@ -1,26 +1,20 @@
 package fan.zheyuan
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.html.*
-import kotlinx.html.*
-import io.ktor.locations.*
-import io.ktor.auth.*
-import io.ktor.gson.*
-import io.ktor.features.*
-import kotlin.test.*
-import io.ktor.server.testing.*
+import fan.zheyuan.applications.web
+import io.ktor.http.HttpMethod
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.testing.handleRequest
+import io.ktor.server.testing.withTestApplication
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ApplicationTest {
     @Test
     fun testRoot() {
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/").apply {
+        withTestApplication({ web(true) }) {
+            handleRequest(HttpMethod.Get, "/hello").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals("HELLO WORLD!", response.content)
+                assertEquals("hello", response.content)
             }
         }
     }
